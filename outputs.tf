@@ -68,16 +68,16 @@
 #  value = "String = ${var.sampley["string"]}, Number = ${var.sampley["number"]}, Boolean = ${var.sampley["boolean"]}"
 #}
 
-#variable "a" {}
-#
-#output "a" {
-#  value = var.a
+variable "a" {}
+
+output "a" {
+  value = var.a
+}
+
+#variable "y" {
+#  default = 852
 #}
-
-variable "y" {
-  default = 852
-}
-
-output "y" {
-  value = var.y
-}
+#
+#output "y" {
+#  value = var.y
+#}
