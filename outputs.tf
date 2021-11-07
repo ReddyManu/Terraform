@@ -74,7 +74,9 @@
 #  value = var.a
 #}
 
-variable "y" {}
+variable "y" {
+  default = 852
+}
 
 output "y" {
   value = var.y
