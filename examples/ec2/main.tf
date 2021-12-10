@@ -10,9 +10,9 @@ resource "aws_instance" "sample" {
 }
 
 resource "null_resource" "sample" {
-  triggers = {
-    abc = aws_instance.sample.*.private_ip
-  }
+#  triggers = {
+#    abc = aws_instance.sample.*.private_ip
+#  }
   provisioner "remote-exec" {
     connection {
       host     = aws_instance.sample.*.public_ip[0]
