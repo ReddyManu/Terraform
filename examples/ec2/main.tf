@@ -38,5 +38,5 @@ data "aws_ami" "example" {
 }
 
 locals {
-  NAME = "$(var.env)-instance"
+  NAME = "${var.env}-instance"
 }

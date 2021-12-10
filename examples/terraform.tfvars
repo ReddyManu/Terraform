@@ -1,3 +1,3 @@
-instance_type = "t3.micro"
+instance_type = ""
 env           = "prod"
 
