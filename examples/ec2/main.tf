@@ -10,6 +10,9 @@ resource "aws_instance" "sample" {
 }
 
 resource "null_resource" "sample" {
+  trigger = {
+    abc = timestamp()
+  }
   provisioner "remote-exec" {
     connection {
       host     = aws_instance.sample.*.public_ip[0]
@@ -18,7 +21,8 @@ resource "null_resource" "sample" {
     }
 
     inline = [
-      "echo Hello"
+      "echo Hello",
+      "echo Bye"
     ]
   }
 }
