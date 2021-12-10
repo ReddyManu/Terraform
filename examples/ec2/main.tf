@@ -10,7 +10,7 @@ resource "aws_instance" "sample" {
 }
 
 resource "null_resource" "sample" {
-  trigger = {
+  triggers = {
     abc = timestamp()
   }
   provisioner "remote-exec" {
