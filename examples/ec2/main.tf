@@ -9,6 +9,20 @@ resource "aws_instance" "sample" {
   }
 }
 
+resource "null_resource" "sample" {
+  provisioner "remote-exec" {
+    connection {
+      host     = aws_instance.sample.*.public_ip[0]
+      user     = "ubuntu"
+      password = "DevOps321"
+    }
+
+    inline = [
+      "echo Hello"
+    ]
+  }
+}
+
 variable "SGID" {}
 variable "name" {}
 variable "instance_type" {}
