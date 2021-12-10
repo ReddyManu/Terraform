@@ -1,5 +1,5 @@
 resource "aws_instance" "sample" {
-  count                  = 0
+  count                  = var.env == "prod" ? 1 : 0
   ami                    = "ami-0855cab4944392d0a"
   instance_type          = var.instance_type == "" ? "t2.micro" : var.instance_type
   vpc_security_group_ids = [var.SGID]
@@ -12,4 +12,4 @@ resource "aws_instance" "sample" {
 variable "SGID" {}
 variable "name" {}
 variable "instance_type" {}
-
+variable "env" {}
