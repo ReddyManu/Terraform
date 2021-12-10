@@ -1,1 +1,1 @@
-instance_type = ""
+instance_type = "t3.micro"
