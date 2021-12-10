@@ -5,7 +5,7 @@ resource "aws_instance" "sample" {
   vpc_security_group_ids = [var.SGID]
 
   tags = {
-    Name = element(var.name, count.index)
+    Name = local.NAME
   }
 }
 
@@ -37,3 +37,6 @@ data "aws_ami" "example" {
   owners      = ["973714476881"]
 }
 
+locals {
+  NAME = "$(var.env)-instance"
+}
