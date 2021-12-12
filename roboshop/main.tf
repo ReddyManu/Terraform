@@ -47,5 +47,5 @@ provider "aws" {
 }
 
 locals {
-  COMP_NAME = element(var.components, )
+  COMP_NAME = element(var.components, count.index)
 }
