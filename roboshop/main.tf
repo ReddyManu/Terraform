@@ -16,7 +16,7 @@ owners      = ["973714476881"]
 }
 
 variable "components" {
-  default = ["frontend", "mongodb", "catalogue", "redis", "user", "cart", "mysql", "shipping", "rabbitmq", "payment"]
+  default = ["frontend", "mongodb", "catalogue", "cart", "user", "redis", "mysql", "shipping", "rabbitmq", "payment"]
 }
 
 provider "aws" {
