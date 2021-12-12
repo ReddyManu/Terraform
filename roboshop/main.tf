@@ -17,6 +17,7 @@ resource "aws_ec2_tag" "tags" {
 }
 
 resource "null_resource" "ansible" {
+  count        = length(var.components)
   provisioner "remote-exec" {
     connection {
       host     = element(aws_spot_instance_request.cheap_worker.*.private_ip, count.index)
