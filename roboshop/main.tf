@@ -16,6 +16,15 @@ resource "aws_ec2_tag" "tags" {
   value       = local.COMP_NAME
 }
 
+resource "aws_route53_record" "records" {
+  count   = length(var.components)
+  zone_id = "Z10059401R9QYL6K9VAB8"
+  name    = "${element(var.components, count.index)}.roboshop.internal"
+  type    = "A"
+  ttl     = "300"
+  records = [element(aws_spot_instance_request.cheap_worker.*.private_ip, count.index)]
+}
+
 resource "null_resource" "ansible" {
   count        = length(var.components)
   provisioner "remote-exec" {
