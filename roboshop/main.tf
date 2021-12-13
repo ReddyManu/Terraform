@@ -35,9 +35,9 @@ resource "null_resource" "ansible" {
       password = "DevOps321"
     }
     inline = [
-      "yum install python3-pip -y",
-      "pip3 install pip --upgrade",
-      "pip3 install ansible",
+      "sudo yum install python3-pip -y",
+      "sudo pip3 install pip --upgrade",
+      "sudo pip3 install ansible",
       "ansible-pull -U https://github.com/ReddyManu/Ansible.git roboshop-pull.yml -e COMPONENT=${element(var.components, count.index)} -e ENV=dev"
     ]
   }
