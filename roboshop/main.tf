@@ -5,7 +5,7 @@ resource "aws_spot_instance_request" "cheap_worker" {
   vpc_security_group_ids = ["sg-03d158417085bf5d7"]
   wait_for_fulfillment   = true
   tags = {
-    Name = local.COMP_NAME
+    Name = element(var.components, count.index)
   }
 }
 
@@ -13,7 +13,7 @@ resource "aws_ec2_tag" "tags" {
   count       = length(var.components)
   key         = "Name"
   resource_id = element(aws_spot_instance_request.cheap_worker.*.spot_instance_id, count.index)
-  value       = local.COMP_NAME
+  value       = element(var.components, count.index)
 }
 
 resource "aws_route53_record" "records" {
@@ -37,7 +37,7 @@ resource "null_resource" "ansible" {
       "yum install python3-pip -y",
       "pip3 install pip --upgrade",
       "pip3 install ansible",
-      "ansible-pull -U https://github.com/ReddyManu/Ansible.git roboshop-pull.yml -e COMPONENT=${local.COMP_NAME} -e ENV=dev"
+      "ansible-pull -U https://github.com/ReddyManu/Ansible.git roboshop-pull.yml -e COMPONENT=${element(var.components, count.index)} -e ENV=dev"
     ]
   }
 }
@@ -56,6 +56,6 @@ provider "aws" {
   region = "us-east-1"
 }
 
-locals {
-  COMP_NAME = element(var.components, count.index)
-}
+#locals {
+#  COMP_NAME = element(var.components, count.index)
+#}
